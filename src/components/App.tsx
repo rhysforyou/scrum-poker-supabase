@@ -1,20 +1,41 @@
 import useSupabaseUser from "../hooks/useSupabaseUser"
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom"
+import PrivateRoute from "./PrivateRoute"
 import SessionList from "./SessionList"
 import SignIn from "./SignIn"
+import SignUp from "./SignUp"
 
 function App() {
-  const user = useSupabaseUser()
-
-  if (user == null) {
-    return <SignIn />
-  }
+  const { user, isLoading } = useSupabaseUser()
 
   return (
-    <div className="App">
-      <h1>Supabase Scrum Poker</h1>
+    <Router>
+      <div className="App">
+        <h1>Supabase Scrum Poker</h1>
 
-      <SessionList />
-    </div>
+        {!isLoading && (
+          <Switch>
+            <Route path="/signin">
+              <SignIn />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <PrivateRoute user={user} path="/sessions">
+              <SessionList />
+            </PrivateRoute>
+            <Route path="/">
+              <Redirect to="/sessions" />
+            </Route>
+          </Switch>
+        )}
+      </div>
+    </Router>
   )
 }
 

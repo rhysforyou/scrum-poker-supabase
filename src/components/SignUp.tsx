@@ -3,28 +3,28 @@ import { Link } from "react-router-dom"
 import * as Yup from "yup"
 import supabase from "../lib/supabase"
 
-interface SignInFormValues {
+interface SignUpFormValues {
   email: string
   password: string
 }
 
-const initialValues: SignInFormValues = {
+const initialValues: SignUpFormValues = {
   email: "",
   password: "",
 }
 
-const SignInSchema = Yup.object().shape({
+const SignUpSchema = Yup.object().shape({
   email: Yup.string().required().email(),
   password: Yup.string().required().min(8),
 })
 
-function SignIn() {
+function SignUp() {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={SignInSchema}
+      validationSchema={SignUpSchema}
       onSubmit={async ({ email, password }, actions) => {
-        await supabase.auth.signIn({ email: email, password: password })
+        await supabase.auth.signUp({ email: email, password: password })
         actions.setSubmitting(false)
       }}
     >
@@ -41,11 +41,11 @@ function SignIn() {
         <br />
         <ErrorMessage name="password" />
         <br />
-        <input type="submit" value="Sign In" /> or{" "}
-        <Link to="/signup">Sign Up</Link>
+        <input type="submit" value="Sign Up" /> or{" "}
+        <Link to="/signin">Sign In</Link>
       </Form>
     </Formik>
   )
 }
 
-export default SignIn
+export default SignUp

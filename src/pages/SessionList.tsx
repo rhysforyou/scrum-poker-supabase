@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import useSessions from "../hooks/useSessions"
 
 function SessionList() {
@@ -6,7 +7,9 @@ function SessionList() {
   return (
     <ul>
       {sessions.map((session) => (
-        <li key={session.id}>{session.name}</li>
+        <li key={session.id}>
+          <Link to={`/sessions/${session.id}`}>{session.name}</Link>
+        </li>
       ))}
     </ul>
   )

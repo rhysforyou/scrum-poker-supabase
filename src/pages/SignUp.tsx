@@ -2,7 +2,8 @@ import { Form, Formik } from "formik"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import * as Yup from "yup"
 import supabase from "../lib/supabase"
-import { InputGroup, Button } from "../components"
+import InputGroup from "../components/InputGroup"
+import Button from "../components/Button"
 
 interface SignUpFormValues {
   email: string

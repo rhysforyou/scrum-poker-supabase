@@ -6,8 +6,11 @@ import {
   Route,
   Switch,
 } from "react-router-dom"
+import { User } from "@supabase/supabase-js"
 import PrivateRoute from "./components/PrivateRoute"
 import SessionList from "./pages/SessionList"
+import SessionDetails from "./pages/SessionDetails"
+import CreateSession from "./pages/CreateSession"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 
@@ -29,6 +32,12 @@ function App() {
             <Route path="/signup">
               <SignUp />
             </Route>
+            <PrivateRoute user={user} path="/sessions/new">
+              <CreateSession user={user as User} />
+            </PrivateRoute>
+            <PrivateRoute user={user} path="/sessions/:sessionId">
+              <SessionDetails />
+            </PrivateRoute>
             <PrivateRoute user={user} path="/sessions">
               <SessionList />
             </PrivateRoute>

@@ -1,4 +1,4 @@
-import useSupabaseUser from "../hooks/useSupabaseUser"
+import useSupabaseUser from "./hooks/useSupabaseUser"
 import {
   BrowserRouter as Router,
   Link,
@@ -6,10 +6,10 @@ import {
   Route,
   Switch,
 } from "react-router-dom"
-import PrivateRoute from "./PrivateRoute"
-import SessionList from "./SessionList"
-import SignIn from "./SignIn"
-import SignUp from "./SignUp"
+import PrivateRoute from "./components/PrivateRoute"
+import SessionList from "./pages/SessionList"
+import SignIn from "./pages/SignIn"
+import SignUp from "./pages/SignUp"
 
 function App() {
   const { user, isLoading } = useSupabaseUser()

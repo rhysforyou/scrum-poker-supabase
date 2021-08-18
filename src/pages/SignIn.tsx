@@ -2,7 +2,7 @@ import { Form, Formik } from "formik"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import * as Yup from "yup"
 import supabase from "../lib/supabase"
-import { InputGroup, Button } from "./forms"
+import { InputGroup, Button } from "../components"
 
 interface SignInFormValues {
   email: string
@@ -60,7 +60,9 @@ function SignIn() {
             <InputGroup label="Email" type="email" name="email" />
             <InputGroup label="Password" type="password" name="password" />
             <div>
-              <Button type="submit">Sign in</Button>
+              <Button className="w-full" type="submit">
+                Sign in
+              </Button>
             </div>
           </Form>
         </Formik>

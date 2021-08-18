@@ -1,6 +1,7 @@
 import useSupabaseUser from "../hooks/useSupabaseUser"
 import {
   BrowserRouter as Router,
+  Link,
   Redirect,
   Route,
   Switch,
@@ -15,8 +16,10 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <h1>Supabase Scrum Poker</h1>
+      <div className="px-4 py-6">
+        <Link to="/" className="hover:text-indigo-500">
+          <h1 className="mb-6 text-xl font-bold">Supabase Scrum Poker</h1>
+        </Link>
 
         {!isLoading && (
           <Switch>
